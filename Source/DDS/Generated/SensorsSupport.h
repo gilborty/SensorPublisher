@@ -8,8 +8,8 @@
   or consult the RTI Connext manual.
 */
 
-#ifndef SensorsSupport_1082808790_h
-#define SensorsSupport_1082808790_h
+#ifndef SensorsSupport_1082808791_h
+#define SensorsSupport_1082808791_h
 
 /* Uses */
 #include "Sensors.h"
@@ -27,7 +27,7 @@
 #endif
 
 
-namespace system{
+namespace example{
 
 namespace sensors{
         
@@ -117,7 +117,7 @@ DDS_DATAREADER_C(TTemperatureDataReader, TTemperatureSeq, TTemperature);
 
 } /* namespace sensors */
 
-} /* namespace system */
+} /* namespace example */
 
 
-#endif  /* SensorsSupport_1082808790_h */
+#endif  /* SensorsSupport_1082808791_h */

@@ -8,8 +8,8 @@
   or consult the RTI Connext manual.
 */
 
-#ifndef Sensors_1082808790_h
-#define Sensors_1082808790_h
+#ifndef Sensors_1082808791_h
+#define Sensors_1082808791_h
 
 #ifndef NDDS_STANDALONE_TYPE
     #ifdef __cplusplus
@@ -26,11 +26,11 @@
 #endif
 
 
-namespace system{
+namespace example{
 
 namespace sensors{
 
-#define system_sensors_TDistance_LAST_MEMBER_ID 1
+#define example_sensors_TDistance_LAST_MEMBER_ID 1
         
 extern const char *TDistanceTYPENAME;
         
@@ -128,7 +128,7 @@ RTIBool TDistance_copy(
 #endif
 
 
-#define system_sensors_TTemperature_LAST_MEMBER_ID 1
+#define example_sensors_TTemperature_LAST_MEMBER_ID 1
         
 extern const char *TTemperatureTYPENAME;
         
@@ -228,7 +228,7 @@ RTIBool TTemperature_copy(
 
 } /* namespace sensors */
 
-} /* namespace system */
+} /* namespace example */
 
 
-#endif /* Sensors_1082808790_h */
+#endif /* Sensors_1082808791_h */

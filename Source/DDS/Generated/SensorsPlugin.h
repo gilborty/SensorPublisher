@@ -8,8 +8,8 @@
   or consult the RTI Connext manual.
 */
 
-#ifndef SensorsPlugin_1082808790_h
-#define SensorsPlugin_1082808790_h
+#ifndef SensorsPlugin_1082808791_h
+#define SensorsPlugin_1082808791_h
 
 #include "Sensors.h"
 
@@ -30,7 +30,7 @@ struct RTICdrStream;
 #endif
 
 
-namespace system{
+namespace example{
 
 namespace sensors{
 
@@ -592,7 +592,7 @@ TTemperaturePlugin_delete(struct PRESTypePlugin *);
 
 } /* namespace sensors */
 
-} /* namespace system */
+} /* namespace example */
 
         
 #if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
@@ -602,4 +602,4 @@ TTemperaturePlugin_delete(struct PRESTypePlugin *);
 #define NDDSUSERDllExport
 #endif        
 
-#endif /* SensorsPlugin_1082808790_h */
+#endif /* SensorsPlugin_1082808791_h */

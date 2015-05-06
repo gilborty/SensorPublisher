@@ -39,11 +39,11 @@
 #include "Sensors.h"
 
 
-namespace system{
+namespace example{
 
 namespace sensors{
 /* ========================================================================= */
-const char *TDistanceTYPENAME = "system::sensors::TDistance";
+const char *TDistanceTYPENAME = "example::sensors::TDistance";
 
 DDS_TypeCode* TDistance_get_typecode()
 {
@@ -93,7 +93,7 @@ DDS_TypeCode* TDistance_get_typecode()
         DDS_TK_STRUCT,/* Kind */
         DDS_BOOLEAN_FALSE, /* Ignored */
         -1,/* Ignored */
-        (char *)"system::sensors::TDistance", /* Name */
+        (char *)"example::sensors::TDistance", /* Name */
         NULL, /* Ignored */
         0, /* Ignored */
         0, /* Ignored */
@@ -119,7 +119,7 @@ DDS_TypeCode* TDistance_get_typecode()
 
 RTIBool TDistance_initialize(
     TDistance* sample) {
-  return ::system::sensors::TDistance_initialize_ex(sample,RTI_TRUE,RTI_TRUE);
+  return ::example::sensors::TDistance_initialize_ex(sample,RTI_TRUE,RTI_TRUE);
 }
         
 RTIBool TDistance_initialize_ex(
@@ -131,7 +131,7 @@ RTIBool TDistance_initialize_ex(
     allocParams.allocate_pointers =  (DDS_Boolean)allocatePointers;
     allocParams.allocate_memory = (DDS_Boolean)allocateMemory;
     
-    return ::system::sensors::TDistance_initialize_w_params(
+    return ::example::sensors::TDistance_initialize_w_params(
         sample,&allocParams);
 }
 
@@ -161,7 +161,7 @@ RTIBool TDistance_initialize_w_params(
 void TDistance_finalize(
     TDistance* sample)
 {
-    ::system::sensors::TDistance_finalize_ex(sample,RTI_TRUE);
+    ::example::sensors::TDistance_finalize_ex(sample,RTI_TRUE);
 }
         
 void TDistance_finalize_ex(
@@ -174,7 +174,7 @@ void TDistance_finalize_ex(
     
     deallocParams.delete_pointers = (DDS_Boolean)deletePointers;
 
-    ::system::sensors::TDistance_finalize_w_params(
+    ::example::sensors::TDistance_finalize_w_params(
         sample,&deallocParams);
 }
 
@@ -241,9 +241,9 @@ RTIBool TDistance_copy(
  */
 #define T TDistance
 #define TSeq TDistanceSeq
-#define T_initialize_w_params ::system::sensors::TDistance_initialize_w_params
-#define T_finalize_w_params   ::system::sensors::TDistance_finalize_w_params
-#define T_copy       ::system::sensors::TDistance_copy
+#define T_initialize_w_params ::example::sensors::TDistance_initialize_w_params
+#define T_finalize_w_params   ::example::sensors::TDistance_finalize_w_params
+#define T_copy       ::example::sensors::TDistance_copy
 
 #ifndef NDDS_STANDALONE_TYPE
 #include "dds_c/generic/dds_c_sequence_TSeq.gen"
@@ -264,7 +264,7 @@ RTIBool TDistance_copy(
 #undef T
 
 /* ========================================================================= */
-const char *TTemperatureTYPENAME = "system::sensors::TTemperature";
+const char *TTemperatureTYPENAME = "example::sensors::TTemperature";
 
 DDS_TypeCode* TTemperature_get_typecode()
 {
@@ -314,7 +314,7 @@ DDS_TypeCode* TTemperature_get_typecode()
         DDS_TK_STRUCT,/* Kind */
         DDS_BOOLEAN_FALSE, /* Ignored */
         -1,/* Ignored */
-        (char *)"system::sensors::TTemperature", /* Name */
+        (char *)"example::sensors::TTemperature", /* Name */
         NULL, /* Ignored */
         0, /* Ignored */
         0, /* Ignored */
@@ -340,7 +340,7 @@ DDS_TypeCode* TTemperature_get_typecode()
 
 RTIBool TTemperature_initialize(
     TTemperature* sample) {
-  return ::system::sensors::TTemperature_initialize_ex(sample,RTI_TRUE,RTI_TRUE);
+  return ::example::sensors::TTemperature_initialize_ex(sample,RTI_TRUE,RTI_TRUE);
 }
         
 RTIBool TTemperature_initialize_ex(
@@ -352,7 +352,7 @@ RTIBool TTemperature_initialize_ex(
     allocParams.allocate_pointers =  (DDS_Boolean)allocatePointers;
     allocParams.allocate_memory = (DDS_Boolean)allocateMemory;
     
-    return ::system::sensors::TTemperature_initialize_w_params(
+    return ::example::sensors::TTemperature_initialize_w_params(
         sample,&allocParams);
 }
 
@@ -382,7 +382,7 @@ RTIBool TTemperature_initialize_w_params(
 void TTemperature_finalize(
     TTemperature* sample)
 {
-    ::system::sensors::TTemperature_finalize_ex(sample,RTI_TRUE);
+    ::example::sensors::TTemperature_finalize_ex(sample,RTI_TRUE);
 }
         
 void TTemperature_finalize_ex(
@@ -395,7 +395,7 @@ void TTemperature_finalize_ex(
     
     deallocParams.delete_pointers = (DDS_Boolean)deletePointers;
 
-    ::system::sensors::TTemperature_finalize_w_params(
+    ::example::sensors::TTemperature_finalize_w_params(
         sample,&deallocParams);
 }
 
@@ -462,9 +462,9 @@ RTIBool TTemperature_copy(
  */
 #define T TTemperature
 #define TSeq TTemperatureSeq
-#define T_initialize_w_params ::system::sensors::TTemperature_initialize_w_params
-#define T_finalize_w_params   ::system::sensors::TTemperature_finalize_w_params
-#define T_copy       ::system::sensors::TTemperature_copy
+#define T_initialize_w_params ::example::sensors::TTemperature_initialize_w_params
+#define T_finalize_w_params   ::example::sensors::TTemperature_finalize_w_params
+#define T_copy       ::example::sensors::TTemperature_copy
 
 #ifndef NDDS_STANDALONE_TYPE
 #include "dds_c/generic/dds_c_sequence_TSeq.gen"
@@ -487,4 +487,4 @@ RTIBool TTemperature_copy(
 
 } /* namespace sensors */
 
-} /* namespace system */
+} /* namespace example */

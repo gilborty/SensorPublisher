@@ -57,7 +57,7 @@
 #include "SensorsPlugin.h"
 
 
-namespace system{
+namespace example{
 
 namespace sensors{
 
@@ -78,7 +78,7 @@ TDistancePluginSupport_create_data_w_params(
         &sample, TDistance);
 
     if(sample != NULL) {
-        if (!::system::sensors::TDistance_initialize_w_params(sample,alloc_params)) {
+        if (!::example::sensors::TDistance_initialize_w_params(sample,alloc_params)) {
             RTIOsapiHeap_freeStructure(sample);
             return NULL;
         }
@@ -95,7 +95,7 @@ TDistancePluginSupport_create_data_ex(RTIBool allocate_pointers){
         &sample, TDistance);
 
     if(sample != NULL) {
-        if (!::system::sensors::TDistance_initialize_ex(sample,allocate_pointers, RTI_TRUE)) {
+        if (!::example::sensors::TDistance_initialize_ex(sample,allocate_pointers, RTI_TRUE)) {
             RTIOsapiHeap_freeStructure(sample);
             return NULL;
         }
@@ -107,7 +107,7 @@ TDistancePluginSupport_create_data_ex(RTIBool allocate_pointers){
 TDistance *
 TDistancePluginSupport_create_data(void)
 {
-    return ::system::sensors::TDistancePluginSupport_create_data_ex(RTI_TRUE);
+    return ::example::sensors::TDistancePluginSupport_create_data_ex(RTI_TRUE);
 }
 
 
@@ -116,7 +116,7 @@ TDistancePluginSupport_destroy_data_w_params(
     TDistance *sample,
     const struct DDS_TypeDeallocationParams_t * dealloc_params) {
 
-    ::system::sensors::TDistance_finalize_w_params(sample,dealloc_params);
+    ::example::sensors::TDistance_finalize_w_params(sample,dealloc_params);
 
     RTIOsapiHeap_freeStructure(sample);
 }
@@ -126,7 +126,7 @@ void
 TDistancePluginSupport_destroy_data_ex(
     TDistance *sample,RTIBool deallocate_pointers) {
 
-    ::system::sensors::TDistance_finalize_ex(sample,deallocate_pointers);
+    ::example::sensors::TDistance_finalize_ex(sample,deallocate_pointers);
 
     RTIOsapiHeap_freeStructure(sample);
 }
@@ -136,7 +136,7 @@ void
 TDistancePluginSupport_destroy_data(
     TDistance *sample) {
 
-    ::system::sensors::TDistancePluginSupport_destroy_data_ex(sample,RTI_TRUE);
+    ::example::sensors::TDistancePluginSupport_destroy_data_ex(sample,RTI_TRUE);
 
 }
 
@@ -146,7 +146,7 @@ TDistancePluginSupport_copy_data(
     TDistance *dst,
     const TDistance *src)
 {
-    return ::system::sensors::TDistance_copy(dst,src);
+    return ::example::sensors::TDistance_copy(dst,src);
 }
 
 
@@ -190,7 +190,7 @@ TDistancePluginSupport_create_key_ex(RTIBool allocate_pointers){
     RTIOsapiHeap_allocateStructure(
         &key, TDistanceKeyHolder);
 
-    ::system::sensors::TDistance_initialize_ex(key,allocate_pointers,RTI_TRUE);
+    ::example::sensors::TDistance_initialize_ex(key,allocate_pointers,RTI_TRUE);
     return key;
 }
 
@@ -198,7 +198,7 @@ TDistancePluginSupport_create_key_ex(RTIBool allocate_pointers){
 TDistance *
 TDistancePluginSupport_create_key(void)
 {
-    return  ::system::sensors::TDistancePluginSupport_create_key_ex(RTI_TRUE);
+    return  ::example::sensors::TDistancePluginSupport_create_key_ex(RTI_TRUE);
 }
 
 
@@ -206,7 +206,7 @@ void
 TDistancePluginSupport_destroy_key_ex(
     TDistanceKeyHolder *key,RTIBool deallocate_pointers)
 {
-    ::system::sensors::TDistance_finalize_ex(key,deallocate_pointers);
+    ::example::sensors::TDistance_finalize_ex(key,deallocate_pointers);
 
     RTIOsapiHeap_freeStructure(key);
 }
@@ -216,7 +216,7 @@ void
 TDistancePluginSupport_destroy_key(
     TDistanceKeyHolder *key) {
 
-  ::system::sensors::TDistancePluginSupport_destroy_key_ex(key,RTI_TRUE);
+  ::example::sensors::TDistancePluginSupport_destroy_key_ex(key,RTI_TRUE);
 
 }
 
@@ -276,19 +276,19 @@ TDistancePlugin_on_endpoint_attached(
             participant_data,
             endpoint_info,
             (PRESTypePluginDefaultEndpointDataCreateSampleFunction)
-            ::system::sensors::TDistancePluginSupport_create_data,
+            ::example::sensors::TDistancePluginSupport_create_data,
             (PRESTypePluginDefaultEndpointDataDestroySampleFunction)
-            ::system::sensors::TDistancePluginSupport_destroy_data,
+            ::example::sensors::TDistancePluginSupport_destroy_data,
             (PRESTypePluginDefaultEndpointDataCreateKeyFunction)
-            ::system::sensors::TDistancePluginSupport_create_key,
+            ::example::sensors::TDistancePluginSupport_create_key,
             (PRESTypePluginDefaultEndpointDataDestroyKeyFunction)
-            ::system::sensors::TDistancePluginSupport_destroy_key);
+            ::example::sensors::TDistancePluginSupport_destroy_key);
 
     if (epd == NULL) {
         return NULL;
     }
    
-    serializedKeyMaxSize = ::system::sensors::TDistancePlugin_get_serialized_key_max_size(
+    serializedKeyMaxSize = ::example::sensors::TDistancePlugin_get_serialized_key_max_size(
         epd,RTI_FALSE,RTI_CDR_ENCAPSULATION_ID_CDR_BE,0);
     
     if (!PRESTypePluginDefaultEndpointData_createMD5Stream(
@@ -301,7 +301,7 @@ TDistancePlugin_on_endpoint_attached(
     
 
     if (endpoint_info->endpointKind == PRES_TYPEPLUGIN_ENDPOINT_WRITER) {
-        serializedSampleMaxSize = ::system::sensors::TDistancePlugin_get_serialized_sample_max_size(
+        serializedSampleMaxSize = ::example::sensors::TDistancePlugin_get_serialized_sample_max_size(
             epd,RTI_FALSE,RTI_CDR_ENCAPSULATION_ID_CDR_BE,0);
             
         PRESTypePluginDefaultEndpointData_setMaxSizeSerializedSample(epd, serializedSampleMaxSize);
@@ -310,9 +310,9 @@ TDistancePlugin_on_endpoint_attached(
                 epd,
                 endpoint_info,
             (PRESTypePluginGetSerializedSampleMaxSizeFunction)
-                ::system::sensors::TDistancePlugin_get_serialized_sample_max_size, epd,
+                ::example::sensors::TDistancePlugin_get_serialized_sample_max_size, epd,
             (PRESTypePluginGetSerializedSampleSizeFunction)
-            ::system::sensors::TDistancePlugin_get_serialized_sample_size,
+            ::example::sensors::TDistancePlugin_get_serialized_sample_size,
             epd) == RTI_FALSE) {
             PRESTypePluginDefaultEndpointData_delete(epd);
             return NULL;
@@ -356,7 +356,7 @@ TDistancePlugin_copy_sample(
     const TDistance *src)
 {
     if (endpoint_data) {} /* To avoid warnings */
-    return ::system::sensors::TDistancePluginSupport_copy_data(dst,src);
+    return ::example::sensors::TDistancePluginSupport_copy_data(dst,src);
 }
 
 /* --------------------------------------------------------------------------------------
@@ -454,7 +454,7 @@ TDistancePlugin_deserialize_sample(
     
     
     if(deserialize_sample) {
-        ::system::sensors::TDistance_initialize_ex(sample, RTI_FALSE, RTI_FALSE);
+        ::example::sensors::TDistance_initialize_ex(sample, RTI_FALSE, RTI_FALSE);
     
     if (!RTICdrStream_deserializeLong(
         stream, &sample->sensorId)) {
@@ -503,7 +503,7 @@ TDistancePlugin_deserialize(
     
     stream->_xTypesState.unassignable = RTI_FALSE;
 
-    result = ::system::sensors::TDistancePlugin_deserialize_sample( 
+    result = ::example::sensors::TDistancePlugin_deserialize_sample( 
         endpoint_data, (sample != NULL)?*sample:NULL,
         stream, deserialize_encapsulation, deserialize_sample, 
         endpoint_plugin_qos);
@@ -847,7 +847,7 @@ RTIBool TDistancePlugin_deserialize_key(
     
     stream->_xTypesState.unassignable = RTI_FALSE;
     
-    result = ::system::sensors::TDistancePlugin_deserialize_key_sample(
+    result = ::example::sensors::TDistancePlugin_deserialize_key_sample(
         endpoint_data, (sample != NULL)?*sample:NULL, stream,
         deserialize_encapsulation, deserialize_key, endpoint_plugin_qos);
         
@@ -1026,7 +1026,7 @@ TDistancePlugin_instance_to_keyhash(
     RTICdrStream_resetPosition(md5Stream);
     RTICdrStream_setDirtyBit(md5Stream, RTI_TRUE);
 
-    if (!::system::sensors::TDistancePlugin_serialize_key(
+    if (!::example::sensors::TDistancePlugin_serialize_key(
             endpoint_data,instance,md5Stream, RTI_FALSE, RTI_CDR_ENCAPSULATION_ID_CDR_BE, RTI_TRUE,NULL)) {
         return RTI_FALSE;
     }
@@ -1100,7 +1100,7 @@ fin:
     }
 
 
-    if (!::system::sensors::TDistancePlugin_instance_to_keyhash(
+    if (!::example::sensors::TDistancePlugin_instance_to_keyhash(
             endpoint_data, keyhash, sample)) {
         return RTI_FALSE;
     }
@@ -1130,20 +1130,20 @@ struct PRESTypePlugin *TDistancePlugin_new(void)
     /* set up parent's function pointers */
     plugin->onParticipantAttached =
         (PRESTypePluginOnParticipantAttachedCallback)
-        ::system::sensors::TDistancePlugin_on_participant_attached;
+        ::example::sensors::TDistancePlugin_on_participant_attached;
     plugin->onParticipantDetached =
         (PRESTypePluginOnParticipantDetachedCallback)
-        ::system::sensors::TDistancePlugin_on_participant_detached;
+        ::example::sensors::TDistancePlugin_on_participant_detached;
     plugin->onEndpointAttached =
         (PRESTypePluginOnEndpointAttachedCallback)
-        ::system::sensors::TDistancePlugin_on_endpoint_attached;
+        ::example::sensors::TDistancePlugin_on_endpoint_attached;
     plugin->onEndpointDetached =
         (PRESTypePluginOnEndpointDetachedCallback)
-        ::system::sensors::TDistancePlugin_on_endpoint_detached;
+        ::example::sensors::TDistancePlugin_on_endpoint_detached;
 
     plugin->copySampleFnc =
         (PRESTypePluginCopySampleFunction)
-        ::system::sensors::TDistancePlugin_copy_sample;
+        ::example::sensors::TDistancePlugin_copy_sample;
     plugin->createSampleFnc =
         (PRESTypePluginCreateSampleFunction)
         TDistancePlugin_create_sample;
@@ -1153,16 +1153,16 @@ struct PRESTypePlugin *TDistancePlugin_new(void)
 
     plugin->serializeFnc =
         (PRESTypePluginSerializeFunction)
-        ::system::sensors::TDistancePlugin_serialize;
+        ::example::sensors::TDistancePlugin_serialize;
     plugin->deserializeFnc =
         (PRESTypePluginDeserializeFunction)
-        ::system::sensors::TDistancePlugin_deserialize;
+        ::example::sensors::TDistancePlugin_deserialize;
     plugin->getSerializedSampleMaxSizeFnc =
         (PRESTypePluginGetSerializedSampleMaxSizeFunction)
-        ::system::sensors::TDistancePlugin_get_serialized_sample_max_size;
+        ::example::sensors::TDistancePlugin_get_serialized_sample_max_size;
     plugin->getSerializedSampleMinSizeFnc =
         (PRESTypePluginGetSerializedSampleMinSizeFunction)
-        ::system::sensors::TDistancePlugin_get_serialized_sample_min_size;
+        ::example::sensors::TDistancePlugin_get_serialized_sample_min_size;
 
 
     plugin->getSampleFnc =
@@ -1174,28 +1174,28 @@ struct PRESTypePlugin *TDistancePlugin_new(void)
 
     plugin->getKeyKindFnc =
         (PRESTypePluginGetKeyKindFunction)
-        ::system::sensors::TDistancePlugin_get_key_kind;
+        ::example::sensors::TDistancePlugin_get_key_kind;
 
 
     plugin->getSerializedKeyMaxSizeFnc =   
         (PRESTypePluginGetSerializedKeyMaxSizeFunction)
-        ::system::sensors::TDistancePlugin_get_serialized_key_max_size;
+        ::example::sensors::TDistancePlugin_get_serialized_key_max_size;
     plugin->serializeKeyFnc =
         (PRESTypePluginSerializeKeyFunction)
-        ::system::sensors::TDistancePlugin_serialize_key;
+        ::example::sensors::TDistancePlugin_serialize_key;
     plugin->deserializeKeyFnc =
         (PRESTypePluginDeserializeKeyFunction)
-        ::system::sensors::TDistancePlugin_deserialize_key;
+        ::example::sensors::TDistancePlugin_deserialize_key;
     plugin->deserializeKeySampleFnc =
         (PRESTypePluginDeserializeKeySampleFunction)
-        ::system::sensors::TDistancePlugin_deserialize_key_sample;
+        ::example::sensors::TDistancePlugin_deserialize_key_sample;
 
     plugin->instanceToKeyHashFnc = 
         (PRESTypePluginInstanceToKeyHashFunction)
-        ::system::sensors::TDistancePlugin_instance_to_keyhash;
+        ::example::sensors::TDistancePlugin_instance_to_keyhash;
     plugin->serializedSampleToKeyHashFnc = 
         (PRESTypePluginSerializedSampleToKeyHashFunction)
-        ::system::sensors::TDistancePlugin_serialized_sample_to_keyhash;
+        ::example::sensors::TDistancePlugin_serialized_sample_to_keyhash;
 
     plugin->getKeyFnc =
         (PRESTypePluginGetKeyFunction)
@@ -1206,13 +1206,13 @@ struct PRESTypePlugin *TDistancePlugin_new(void)
 
     plugin->instanceToKeyFnc =
         (PRESTypePluginInstanceToKeyFunction)
-        ::system::sensors::TDistancePlugin_instance_to_key;
+        ::example::sensors::TDistancePlugin_instance_to_key;
     plugin->keyToInstanceFnc =
         (PRESTypePluginKeyToInstanceFunction)
-        ::system::sensors::TDistancePlugin_key_to_instance;
+        ::example::sensors::TDistancePlugin_key_to_instance;
     plugin->serializedKeyToKeyHashFnc = NULL; /* Not supported yet */
     
-    plugin->typeCode =  (struct RTICdrTypeCode *)::system::sensors::TDistance_get_typecode();
+    plugin->typeCode =  (struct RTICdrTypeCode *)::example::sensors::TDistance_get_typecode();
     
     plugin->languageKind = PRES_TYPEPLUGIN_DDS_TYPE; 
 
@@ -1225,7 +1225,7 @@ struct PRESTypePlugin *TDistancePlugin_new(void)
         TDistancePlugin_return_buffer;
     plugin->getSerializedSampleSizeFnc =
         (PRESTypePluginGetSerializedSampleSizeFunction)
-        ::system::sensors::TDistancePlugin_get_serialized_sample_size;
+        ::example::sensors::TDistancePlugin_get_serialized_sample_size;
 
     plugin->endpointTypeName = TDistanceTYPENAME;
 
@@ -1255,7 +1255,7 @@ TTemperaturePluginSupport_create_data_w_params(
         &sample, TTemperature);
 
     if(sample != NULL) {
-        if (!::system::sensors::TTemperature_initialize_w_params(sample,alloc_params)) {
+        if (!::example::sensors::TTemperature_initialize_w_params(sample,alloc_params)) {
             RTIOsapiHeap_freeStructure(sample);
             return NULL;
         }
@@ -1272,7 +1272,7 @@ TTemperaturePluginSupport_create_data_ex(RTIBool allocate_pointers){
         &sample, TTemperature);
 
     if(sample != NULL) {
-        if (!::system::sensors::TTemperature_initialize_ex(sample,allocate_pointers, RTI_TRUE)) {
+        if (!::example::sensors::TTemperature_initialize_ex(sample,allocate_pointers, RTI_TRUE)) {
             RTIOsapiHeap_freeStructure(sample);
             return NULL;
         }
@@ -1284,7 +1284,7 @@ TTemperaturePluginSupport_create_data_ex(RTIBool allocate_pointers){
 TTemperature *
 TTemperaturePluginSupport_create_data(void)
 {
-    return ::system::sensors::TTemperaturePluginSupport_create_data_ex(RTI_TRUE);
+    return ::example::sensors::TTemperaturePluginSupport_create_data_ex(RTI_TRUE);
 }
 
 
@@ -1293,7 +1293,7 @@ TTemperaturePluginSupport_destroy_data_w_params(
     TTemperature *sample,
     const struct DDS_TypeDeallocationParams_t * dealloc_params) {
 
-    ::system::sensors::TTemperature_finalize_w_params(sample,dealloc_params);
+    ::example::sensors::TTemperature_finalize_w_params(sample,dealloc_params);
 
     RTIOsapiHeap_freeStructure(sample);
 }
@@ -1303,7 +1303,7 @@ void
 TTemperaturePluginSupport_destroy_data_ex(
     TTemperature *sample,RTIBool deallocate_pointers) {
 
-    ::system::sensors::TTemperature_finalize_ex(sample,deallocate_pointers);
+    ::example::sensors::TTemperature_finalize_ex(sample,deallocate_pointers);
 
     RTIOsapiHeap_freeStructure(sample);
 }
@@ -1313,7 +1313,7 @@ void
 TTemperaturePluginSupport_destroy_data(
     TTemperature *sample) {
 
-    ::system::sensors::TTemperaturePluginSupport_destroy_data_ex(sample,RTI_TRUE);
+    ::example::sensors::TTemperaturePluginSupport_destroy_data_ex(sample,RTI_TRUE);
 
 }
 
@@ -1323,7 +1323,7 @@ TTemperaturePluginSupport_copy_data(
     TTemperature *dst,
     const TTemperature *src)
 {
-    return ::system::sensors::TTemperature_copy(dst,src);
+    return ::example::sensors::TTemperature_copy(dst,src);
 }
 
 
@@ -1367,7 +1367,7 @@ TTemperaturePluginSupport_create_key_ex(RTIBool allocate_pointers){
     RTIOsapiHeap_allocateStructure(
         &key, TTemperatureKeyHolder);
 
-    ::system::sensors::TTemperature_initialize_ex(key,allocate_pointers,RTI_TRUE);
+    ::example::sensors::TTemperature_initialize_ex(key,allocate_pointers,RTI_TRUE);
     return key;
 }
 
@@ -1375,7 +1375,7 @@ TTemperaturePluginSupport_create_key_ex(RTIBool allocate_pointers){
 TTemperature *
 TTemperaturePluginSupport_create_key(void)
 {
-    return  ::system::sensors::TTemperaturePluginSupport_create_key_ex(RTI_TRUE);
+    return  ::example::sensors::TTemperaturePluginSupport_create_key_ex(RTI_TRUE);
 }
 
 
@@ -1383,7 +1383,7 @@ void
 TTemperaturePluginSupport_destroy_key_ex(
     TTemperatureKeyHolder *key,RTIBool deallocate_pointers)
 {
-    ::system::sensors::TTemperature_finalize_ex(key,deallocate_pointers);
+    ::example::sensors::TTemperature_finalize_ex(key,deallocate_pointers);
 
     RTIOsapiHeap_freeStructure(key);
 }
@@ -1393,7 +1393,7 @@ void
 TTemperaturePluginSupport_destroy_key(
     TTemperatureKeyHolder *key) {
 
-  ::system::sensors::TTemperaturePluginSupport_destroy_key_ex(key,RTI_TRUE);
+  ::example::sensors::TTemperaturePluginSupport_destroy_key_ex(key,RTI_TRUE);
 
 }
 
@@ -1453,19 +1453,19 @@ TTemperaturePlugin_on_endpoint_attached(
             participant_data,
             endpoint_info,
             (PRESTypePluginDefaultEndpointDataCreateSampleFunction)
-            ::system::sensors::TTemperaturePluginSupport_create_data,
+            ::example::sensors::TTemperaturePluginSupport_create_data,
             (PRESTypePluginDefaultEndpointDataDestroySampleFunction)
-            ::system::sensors::TTemperaturePluginSupport_destroy_data,
+            ::example::sensors::TTemperaturePluginSupport_destroy_data,
             (PRESTypePluginDefaultEndpointDataCreateKeyFunction)
-            ::system::sensors::TTemperaturePluginSupport_create_key,
+            ::example::sensors::TTemperaturePluginSupport_create_key,
             (PRESTypePluginDefaultEndpointDataDestroyKeyFunction)
-            ::system::sensors::TTemperaturePluginSupport_destroy_key);
+            ::example::sensors::TTemperaturePluginSupport_destroy_key);
 
     if (epd == NULL) {
         return NULL;
     }
    
-    serializedKeyMaxSize = ::system::sensors::TTemperaturePlugin_get_serialized_key_max_size(
+    serializedKeyMaxSize = ::example::sensors::TTemperaturePlugin_get_serialized_key_max_size(
         epd,RTI_FALSE,RTI_CDR_ENCAPSULATION_ID_CDR_BE,0);
     
     if (!PRESTypePluginDefaultEndpointData_createMD5Stream(
@@ -1478,7 +1478,7 @@ TTemperaturePlugin_on_endpoint_attached(
     
 
     if (endpoint_info->endpointKind == PRES_TYPEPLUGIN_ENDPOINT_WRITER) {
-        serializedSampleMaxSize = ::system::sensors::TTemperaturePlugin_get_serialized_sample_max_size(
+        serializedSampleMaxSize = ::example::sensors::TTemperaturePlugin_get_serialized_sample_max_size(
             epd,RTI_FALSE,RTI_CDR_ENCAPSULATION_ID_CDR_BE,0);
             
         PRESTypePluginDefaultEndpointData_setMaxSizeSerializedSample(epd, serializedSampleMaxSize);
@@ -1487,9 +1487,9 @@ TTemperaturePlugin_on_endpoint_attached(
                 epd,
                 endpoint_info,
             (PRESTypePluginGetSerializedSampleMaxSizeFunction)
-                ::system::sensors::TTemperaturePlugin_get_serialized_sample_max_size, epd,
+                ::example::sensors::TTemperaturePlugin_get_serialized_sample_max_size, epd,
             (PRESTypePluginGetSerializedSampleSizeFunction)
-            ::system::sensors::TTemperaturePlugin_get_serialized_sample_size,
+            ::example::sensors::TTemperaturePlugin_get_serialized_sample_size,
             epd) == RTI_FALSE) {
             PRESTypePluginDefaultEndpointData_delete(epd);
             return NULL;
@@ -1533,7 +1533,7 @@ TTemperaturePlugin_copy_sample(
     const TTemperature *src)
 {
     if (endpoint_data) {} /* To avoid warnings */
-    return ::system::sensors::TTemperaturePluginSupport_copy_data(dst,src);
+    return ::example::sensors::TTemperaturePluginSupport_copy_data(dst,src);
 }
 
 /* --------------------------------------------------------------------------------------
@@ -1631,7 +1631,7 @@ TTemperaturePlugin_deserialize_sample(
     
     
     if(deserialize_sample) {
-        ::system::sensors::TTemperature_initialize_ex(sample, RTI_FALSE, RTI_FALSE);
+        ::example::sensors::TTemperature_initialize_ex(sample, RTI_FALSE, RTI_FALSE);
     
     if (!RTICdrStream_deserializeLong(
         stream, &sample->sensorId)) {
@@ -1680,7 +1680,7 @@ TTemperaturePlugin_deserialize(
     
     stream->_xTypesState.unassignable = RTI_FALSE;
 
-    result = ::system::sensors::TTemperaturePlugin_deserialize_sample( 
+    result = ::example::sensors::TTemperaturePlugin_deserialize_sample( 
         endpoint_data, (sample != NULL)?*sample:NULL,
         stream, deserialize_encapsulation, deserialize_sample, 
         endpoint_plugin_qos);
@@ -2024,7 +2024,7 @@ RTIBool TTemperaturePlugin_deserialize_key(
     
     stream->_xTypesState.unassignable = RTI_FALSE;
     
-    result = ::system::sensors::TTemperaturePlugin_deserialize_key_sample(
+    result = ::example::sensors::TTemperaturePlugin_deserialize_key_sample(
         endpoint_data, (sample != NULL)?*sample:NULL, stream,
         deserialize_encapsulation, deserialize_key, endpoint_plugin_qos);
         
@@ -2203,7 +2203,7 @@ TTemperaturePlugin_instance_to_keyhash(
     RTICdrStream_resetPosition(md5Stream);
     RTICdrStream_setDirtyBit(md5Stream, RTI_TRUE);
 
-    if (!::system::sensors::TTemperaturePlugin_serialize_key(
+    if (!::example::sensors::TTemperaturePlugin_serialize_key(
             endpoint_data,instance,md5Stream, RTI_FALSE, RTI_CDR_ENCAPSULATION_ID_CDR_BE, RTI_TRUE,NULL)) {
         return RTI_FALSE;
     }
@@ -2277,7 +2277,7 @@ fin:
     }
 
 
-    if (!::system::sensors::TTemperaturePlugin_instance_to_keyhash(
+    if (!::example::sensors::TTemperaturePlugin_instance_to_keyhash(
             endpoint_data, keyhash, sample)) {
         return RTI_FALSE;
     }
@@ -2307,20 +2307,20 @@ struct PRESTypePlugin *TTemperaturePlugin_new(void)
     /* set up parent's function pointers */
     plugin->onParticipantAttached =
         (PRESTypePluginOnParticipantAttachedCallback)
-        ::system::sensors::TTemperaturePlugin_on_participant_attached;
+        ::example::sensors::TTemperaturePlugin_on_participant_attached;
     plugin->onParticipantDetached =
         (PRESTypePluginOnParticipantDetachedCallback)
-        ::system::sensors::TTemperaturePlugin_on_participant_detached;
+        ::example::sensors::TTemperaturePlugin_on_participant_detached;
     plugin->onEndpointAttached =
         (PRESTypePluginOnEndpointAttachedCallback)
-        ::system::sensors::TTemperaturePlugin_on_endpoint_attached;
+        ::example::sensors::TTemperaturePlugin_on_endpoint_attached;
     plugin->onEndpointDetached =
         (PRESTypePluginOnEndpointDetachedCallback)
-        ::system::sensors::TTemperaturePlugin_on_endpoint_detached;
+        ::example::sensors::TTemperaturePlugin_on_endpoint_detached;
 
     plugin->copySampleFnc =
         (PRESTypePluginCopySampleFunction)
-        ::system::sensors::TTemperaturePlugin_copy_sample;
+        ::example::sensors::TTemperaturePlugin_copy_sample;
     plugin->createSampleFnc =
         (PRESTypePluginCreateSampleFunction)
         TTemperaturePlugin_create_sample;
@@ -2330,16 +2330,16 @@ struct PRESTypePlugin *TTemperaturePlugin_new(void)
 
     plugin->serializeFnc =
         (PRESTypePluginSerializeFunction)
-        ::system::sensors::TTemperaturePlugin_serialize;
+        ::example::sensors::TTemperaturePlugin_serialize;
     plugin->deserializeFnc =
         (PRESTypePluginDeserializeFunction)
-        ::system::sensors::TTemperaturePlugin_deserialize;
+        ::example::sensors::TTemperaturePlugin_deserialize;
     plugin->getSerializedSampleMaxSizeFnc =
         (PRESTypePluginGetSerializedSampleMaxSizeFunction)
-        ::system::sensors::TTemperaturePlugin_get_serialized_sample_max_size;
+        ::example::sensors::TTemperaturePlugin_get_serialized_sample_max_size;
     plugin->getSerializedSampleMinSizeFnc =
         (PRESTypePluginGetSerializedSampleMinSizeFunction)
-        ::system::sensors::TTemperaturePlugin_get_serialized_sample_min_size;
+        ::example::sensors::TTemperaturePlugin_get_serialized_sample_min_size;
 
 
     plugin->getSampleFnc =
@@ -2351,28 +2351,28 @@ struct PRESTypePlugin *TTemperaturePlugin_new(void)
 
     plugin->getKeyKindFnc =
         (PRESTypePluginGetKeyKindFunction)
-        ::system::sensors::TTemperaturePlugin_get_key_kind;
+        ::example::sensors::TTemperaturePlugin_get_key_kind;
 
 
     plugin->getSerializedKeyMaxSizeFnc =   
         (PRESTypePluginGetSerializedKeyMaxSizeFunction)
-        ::system::sensors::TTemperaturePlugin_get_serialized_key_max_size;
+        ::example::sensors::TTemperaturePlugin_get_serialized_key_max_size;
     plugin->serializeKeyFnc =
         (PRESTypePluginSerializeKeyFunction)
-        ::system::sensors::TTemperaturePlugin_serialize_key;
+        ::example::sensors::TTemperaturePlugin_serialize_key;
     plugin->deserializeKeyFnc =
         (PRESTypePluginDeserializeKeyFunction)
-        ::system::sensors::TTemperaturePlugin_deserialize_key;
+        ::example::sensors::TTemperaturePlugin_deserialize_key;
     plugin->deserializeKeySampleFnc =
         (PRESTypePluginDeserializeKeySampleFunction)
-        ::system::sensors::TTemperaturePlugin_deserialize_key_sample;
+        ::example::sensors::TTemperaturePlugin_deserialize_key_sample;
 
     plugin->instanceToKeyHashFnc = 
         (PRESTypePluginInstanceToKeyHashFunction)
-        ::system::sensors::TTemperaturePlugin_instance_to_keyhash;
+        ::example::sensors::TTemperaturePlugin_instance_to_keyhash;
     plugin->serializedSampleToKeyHashFnc = 
         (PRESTypePluginSerializedSampleToKeyHashFunction)
-        ::system::sensors::TTemperaturePlugin_serialized_sample_to_keyhash;
+        ::example::sensors::TTemperaturePlugin_serialized_sample_to_keyhash;
 
     plugin->getKeyFnc =
         (PRESTypePluginGetKeyFunction)
@@ -2383,13 +2383,13 @@ struct PRESTypePlugin *TTemperaturePlugin_new(void)
 
     plugin->instanceToKeyFnc =
         (PRESTypePluginInstanceToKeyFunction)
-        ::system::sensors::TTemperaturePlugin_instance_to_key;
+        ::example::sensors::TTemperaturePlugin_instance_to_key;
     plugin->keyToInstanceFnc =
         (PRESTypePluginKeyToInstanceFunction)
-        ::system::sensors::TTemperaturePlugin_key_to_instance;
+        ::example::sensors::TTemperaturePlugin_key_to_instance;
     plugin->serializedKeyToKeyHashFnc = NULL; /* Not supported yet */
     
-    plugin->typeCode =  (struct RTICdrTypeCode *)::system::sensors::TTemperature_get_typecode();
+    plugin->typeCode =  (struct RTICdrTypeCode *)::example::sensors::TTemperature_get_typecode();
     
     plugin->languageKind = PRES_TYPEPLUGIN_DDS_TYPE; 
 
@@ -2402,7 +2402,7 @@ struct PRESTypePlugin *TTemperaturePlugin_new(void)
         TTemperaturePlugin_return_buffer;
     plugin->getSerializedSampleSizeFnc =
         (PRESTypePluginGetSerializedSampleSizeFunction)
-        ::system::sensors::TTemperaturePlugin_get_serialized_sample_size;
+        ::example::sensors::TTemperaturePlugin_get_serialized_sample_size;
 
     plugin->endpointTypeName = TTemperatureTYPENAME;
 
@@ -2417,4 +2417,4 @@ TTemperaturePlugin_delete(struct PRESTypePlugin *plugin)
 
 } /* namespace sensors */
 
-} /* namespace system */
+} /* namespace example */

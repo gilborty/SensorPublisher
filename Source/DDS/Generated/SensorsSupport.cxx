@@ -20,7 +20,7 @@
 #endif        
 
 
-namespace system{
+namespace example{
 
 namespace sensors{
 
@@ -55,7 +55,7 @@ namespace sensors{
 
 /* Defines */
 #define TDataWriter TDistanceDataWriter
-#define TData       ::system::sensors::TDistance
+#define TData       ::example::sensors::TDistance
 
 
 #ifdef __cplusplus
@@ -86,7 +86,7 @@ namespace sensors{
 /* Defines */
 #define TDataReader TDistanceDataReader
 #define TDataSeq    TDistanceSeq
-#define TData       ::system::sensors::TDistance
+#define TData       ::example::sensors::TDistance
 
 
 #ifdef __cplusplus
@@ -115,12 +115,12 @@ namespace sensors{
 
 /* Requires */
 #define TTYPENAME    TDistanceTYPENAME
-#define TPlugin_new  ::system::sensors::TDistancePlugin_new
-#define TPlugin_delete  ::system::sensors::TDistancePlugin_delete
+#define TPlugin_new  ::example::sensors::TDistancePlugin_new
+#define TPlugin_delete  ::example::sensors::TDistancePlugin_delete
 
 /* Defines */
 #define TTypeSupport TDistanceTypeSupport
-#define TData        ::system::sensors::TDistance
+#define TData        ::example::sensors::TDistance
 #define TDataReader  TDistanceDataReader
 #define TDataWriter  TDistanceDataWriter
 #ifdef __cplusplus
@@ -176,7 +176,7 @@ namespace sensors{
 
 /* Defines */
 #define TDataWriter TTemperatureDataWriter
-#define TData       ::system::sensors::TTemperature
+#define TData       ::example::sensors::TTemperature
 
 
 #ifdef __cplusplus
@@ -207,7 +207,7 @@ namespace sensors{
 /* Defines */
 #define TDataReader TTemperatureDataReader
 #define TDataSeq    TTemperatureSeq
-#define TData       ::system::sensors::TTemperature
+#define TData       ::example::sensors::TTemperature
 
 
 #ifdef __cplusplus
@@ -236,12 +236,12 @@ namespace sensors{
 
 /* Requires */
 #define TTYPENAME    TTemperatureTYPENAME
-#define TPlugin_new  ::system::sensors::TTemperaturePlugin_new
-#define TPlugin_delete  ::system::sensors::TTemperaturePlugin_delete
+#define TPlugin_new  ::example::sensors::TTemperaturePlugin_new
+#define TPlugin_delete  ::example::sensors::TTemperaturePlugin_delete
 
 /* Defines */
 #define TTypeSupport TTemperatureTypeSupport
-#define TData        ::system::sensors::TTemperature
+#define TData        ::example::sensors::TTemperature
 #define TDataReader  TTemperatureDataReader
 #define TDataWriter  TTemperatureDataWriter
 #ifdef __cplusplus
@@ -268,4 +268,4 @@ namespace sensors{
 
 } /* namespace sensors */
 
-} /* namespace system */
+} /* namespace example */
