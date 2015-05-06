@@ -1,0 +1,17 @@
+module system
+{
+	module sensors
+	{
+		struct TDistance
+		{
+			long sensorId; 		//@key
+			float value_m;	// Distance in meters	
+		};
+		
+		struct TTemperature
+		{
+			long sensorId; 		//@key
+			float value_c;	// Temperature in Celsius
+		};
+	};
+};

@@ -1,0 +1,3 @@
+[submodule "SharedDDS"]
+	path = SharedDDS
+	url = https://github.com/spiderkeys/SharedDDS.git
