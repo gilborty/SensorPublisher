@@ -27,7 +27,15 @@ CDDSManager::CDDSManager()
 
 CDDSManager::~CDDSManager()
 {
+	LOG( INFO ) << "Cleaning up DDS Manager...";
 
+	// Delete DDS entities
+	m_pParticipant->delete_contained_entities();
+
+	// Delete the participant
+	DDS::DomainParticipantFactory::get_instance()->delete_participant( m_pParticipant );
+
+	LOG( INFO ) << "Cleaned up DDS Manager.";
 }
 
 void CDDSManager::LoadXMLProfiles()

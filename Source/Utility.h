@@ -11,6 +11,8 @@
 #include <atomic>
 #include <functional>
 #include <sstream>
+#include <thread>
+#include <random>
 
 #include <stdint.h>
 #include <signal.h>
