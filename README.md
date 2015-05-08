@@ -11,6 +11,7 @@ Areas of interest:
 
 # Todo List
 - [ ] Revamp to build using a makefile, rather than an Eclipse project
+- [ ] Fix instances of hard coded path for RTI libs/tools
 - [ ] Complete the Controller and Console applications described in the AppLibrary.xml
 
 More to come!
